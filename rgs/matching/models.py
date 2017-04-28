@@ -5,7 +5,7 @@ from django.db import models
 from django.core.validators import MinValueValidator
 
 # Create your models here.
-class RGS_User(models.Model):
+class RGSUser(models.Model):
 	GENDER = (
 		('M', 'Male'),
 		('F', 'Female')

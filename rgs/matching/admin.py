@@ -2,11 +2,11 @@
 from __future__ import unicode_literals
 
 from django.contrib import admin
-from models import RGS_User, Interest
+from models import RGSUser, Interest
 
 # Register your models here.
-@admin.register(RGS_User)
-class RGS_UserAdmin(admin.ModelAdmin):
+@admin.register(RGSUser)
+class RGSUserAdmin(admin.ModelAdmin):
 	fields = ('name', 'lastname', 'gender', 'age', 'interests')
 
 @admin.register(Interest)
