@@ -1,0 +1,245 @@
+{
+	"variables": [],
+	"info": {
+		"name": "RGS Test",
+		"_postman_id": "e03c5076-e52d-058c-8dea-63209d2ace98",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:8000/api/users/filter_users/?gender=F&age=20",
+			"request": {
+				"url": "localhost:8000/api/users/filter_users/?gender=F&age=20",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Javier",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "lastname",
+							"value": "Nieto",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "gender",
+							"value": "M",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "age",
+							"value": "27",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "interests",
+							"value": "1,2,3",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": "Filter female 20yo"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8000/api/users/filter_users/?gender=M&age=32",
+			"request": {
+				"url": "localhost:8000/api/users/filter_users/?gender=M&age=32",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Javier",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "lastname",
+							"value": "Nieto",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "gender",
+							"value": "M",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "age",
+							"value": "27",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "interests",
+							"value": "1,2,3",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": "Filter male 32yo"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8000/api/users/new_user/",
+			"request": {
+				"url": "localhost:8000/api/users/new_user/",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Post",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "lastname",
+							"value": "Poster",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "gender",
+							"value": "M",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "age",
+							"value": "27",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "interests",
+							"value": "1,2,3",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": "Create new user:\nPost Poster\nMale\n27yo\nInterests: 1,2,3"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8000/api/users/new_user/",
+			"request": {
+				"url": "localhost:8000/api/users/new_user/",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Posta",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "lastname",
+							"value": "Poster",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "gender",
+							"value": "F",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "age",
+							"value": "27",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "interests",
+							"value": "1,2,3",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": "Create new user:\nPosta Poster\nFemale\n27yo\nInterests: 1,2,3"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8000/api/users/match/",
+			"request": {
+				"url": "localhost:8000/api/users/match/",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "user",
+							"value": "2499",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "page",
+							"value": "",
+							"type": "text",
+							"enabled": false
+						}
+					]
+				},
+				"description": "Matches for user 2499 (no page)\nVictoria Brown\nFemale 39yo\nInterests: Books, films, sports, music, food, technology."
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8000/api/users/match/",
+			"request": {
+				"url": "localhost:8000/api/users/match/",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "user",
+							"value": "332",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "page",
+							"value": "26",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": "Matches for user 332 (page 26)\nSusan Duffy\nFemale 44yo\nInterests: Films, sports, videogames, fashion, technology."
+			},
+			"response": []
+		}
+	]
+}

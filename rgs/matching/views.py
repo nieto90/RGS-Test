@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import transaction
+from django.db.models import F, Count, Case, When, IntegerField, Sum
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.decorators import list_route
@@ -15,7 +16,7 @@ class RGSUserViewSet(viewsets.ModelViewSet):
 	queryset = RGSUser.objects.all()
 	serializer_class = RGSUserSerializer
 
-	ENTRIES_PER_PAGE = 10
+	ENTRIES_FOR_PAGE = 10
 
 	@list_route(methods=['post'])
 	def new_user(self, request):
@@ -43,11 +44,39 @@ class RGSUserViewSet(viewsets.ModelViewSet):
 	def filter_users(self, request):
 		gender = request.GET['gender']
 		age = request.GET['age']
-		page = int(request.GET['page']) if 'page' in request.GET else 0
 
-		start = self.ENTRIES_PER_PAGE*page
-		end = self.ENTRIES_PER_PAGE*(page + 1)
+		users = RGSUser.objects.filter(gender=gender, age=age)
 
-		users = RGSUser.objects.filter(gender=gender, age=age)[start:end]
+		return Response(self.serializer_class(users, many=True).data)
 
-		return Response({'page': page, 'users': self.serializer_class(users, many=True).data})
+	@list_route(methods=['post'])
+	def match(self, request):
+		user_id = int(request.POST['user'])
+		user = RGSUser.objects.get(id=user_id)
+
+		# if page is not an argument, return page 0
+		page = int(request.POST['page']) if 'page' in request.POST else 0
+		start = page*self.ENTRIES_FOR_PAGE
+		end = start + self.ENTRIES_FOR_PAGE
+
+		gender = 'M' if user.gender == 'F' else 'F'
+		age = user.age
+		interests = user.interests.all()
+
+		# age score = 100 - 10*(age difference)
+		# interests score = number of coincidences
+		# total score = age score + interests score
+
+		users = RGSUser.objects.filter(gender=gender)\
+		.annotate(age_score=Case(
+			When(age__gt=age, then=100-10*(F('age')-age)),
+			When(age__lt=age, then=100-10*(age-F('age'))), 
+			default=100, output_field=IntegerField()))\
+		.annotate(inter_score=Sum(Case(
+			When(interests__id__in=interests, then=1),
+			default=0, output_field=IntegerField())))\
+		.annotate(score=F('age_score')+F('inter_score'))\
+		.order_by('-score')\
+		.values('id', 'name', 'lastname', 'age', 'inter_score', 'score')[start:end]
+
+		return Response({'page': page, 'matches': users})
