@@ -13,41 +13,7 @@
 				"url": "localhost:8000/api/users/filter_users/?gender=F&age=20",
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "name",
-							"value": "Javier",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "lastname",
-							"value": "Nieto",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "gender",
-							"value": "M",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "age",
-							"value": "27",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "interests",
-							"value": "1,2,3",
-							"type": "text",
-							"enabled": true
-						}
-					]
-				},
+				"body": {},
 				"description": "Filter female 20yo"
 			},
 			"response": []
@@ -58,41 +24,7 @@
 				"url": "localhost:8000/api/users/filter_users/?gender=M&age=32",
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "name",
-							"value": "Javier",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "lastname",
-							"value": "Nieto",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "gender",
-							"value": "M",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "age",
-							"value": "27",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "interests",
-							"value": "1,2,3",
-							"type": "text",
-							"enabled": true
-						}
-					]
-				},
+				"body": {},
 				"description": "Filter male 32yo"
 			},
 			"response": []

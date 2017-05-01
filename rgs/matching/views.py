@@ -77,6 +77,6 @@ class RGSUserViewSet(viewsets.ModelViewSet):
 			default=0, output_field=IntegerField())))\
 		.annotate(score=F('age_score')+F('inter_score'))\
 		.order_by('-score')\
-		.values('id', 'name', 'lastname', 'age', 'inter_score', 'score')[start:end]
+		.values('id', 'name', 'lastname', 'age', 'score')[start:end]
 
 		return Response({'page': page, 'matches': users})
